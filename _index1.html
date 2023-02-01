@@ -12,26 +12,28 @@
 
     <body class="h-full grid place-items-center">
         <div id="app">
-            <h2 class="font-bold mb-2" v-show="inProgressAssignments.length">In Progress</h2>
-            <ul>
-                <li v-for="task in inProgressAssignments" :key="task.id">
-                    <label>
-                        {{ task.name}}
-                        <input type="checkbox" v-model="task.complete">
-                    </label>
-                </li>
-            </ul>
-            <div v-show="completedAssignments.length">
-                <h2 class="font-bold mb-2 mt-4">Done</h2>
+            <section>
+                <h2 class="font-bold mb-2" v-show="inProgressAssignments.length">In Progress</h2>
                 <ul>
-                    <li v-for="task in completedAssignments" :key="task.id">
+                    <li v-for="task in inProgressAssignments" :key="task.id">
                         <label>
                             {{ task.name}}
                             <input type="checkbox" v-model="task.complete">
                         </label>
                     </li>
                 </ul>
-            </div>
+                <div v-show="completedAssignments.length">
+                    <h2 class="font-bold mb-2 mt-4">Done</h2>
+                    <ul>
+                        <li v-for="task in completedAssignments" :key="task.id">
+                            <label>
+                                {{ task.name}}
+                                <input type="checkbox" v-model="task.complete">
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </section>
             <!-- <h1> {{ greeting }}</h1>
         <h2>{{ greeting.length }}</h2> -->
 
