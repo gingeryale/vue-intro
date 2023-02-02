@@ -3,9 +3,13 @@ export default {
     components: { Assignment },
 
     template: `
-    <section>
-    <h2 class="font-bold mb-2" v-show="assignments.length">{{title}}</h2>
-    <ul>
+    <section v-show="assignments.length">
+    <h2 class="font-bold mb-2" >{{title}}, <span>{{assignments.length}}</span></h2>
+    <div class="flex gap-2">
+    <button @click="currentTag = tag"
+    v-for="tag in tags" class="border rounded p-1 text-xs">{{tag}}</button>
+    </div>
+    <ul class="border border-gray-600 p-3 divide-y divide-gray-600 mt-5">
         <assignment 
         v-for="assignment in assignments" 
         :key="assignment.id"
@@ -18,5 +22,15 @@ export default {
     props: {
         assignments: Array,
         title: String
+    },
+    data() {
+        return {
+            currentTag: ''
+        };
+    },
+    computed: {
+        tags() {
+            return new Set(this.assignments.map(a => a.tag));
+        }
     }
 }
